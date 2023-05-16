@@ -3,7 +3,7 @@ import string
 
 def hangman():
     # Prompt user to create a username
-    username = input("Enter username:")
+    username = input("Enter username: ")
     # Set up target words
     words = ['python', 'programming', 'technology', 'hangman', 'game']
     # Randomly choose one of the target words
