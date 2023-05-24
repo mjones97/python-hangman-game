@@ -1,8 +1,9 @@
 import random
 
+#Prompt a username from the user
+username = input("Enter a username: ")
+
 def hangman():
-    #Prompt a username from the user
-    username = input("Enter a username: ")
     # List of words to choose from
     words = ['apple', 'banana', 'orange', 'grape', 'watermelon']
     # Select a random word from the list
@@ -48,6 +49,8 @@ def hangman():
 
         # Check if the word has been completely guessed
         if "_" not in revealed_word:
+            # Display congratulations message
+            print("Congrats! You guessed correctly.")
             # Prompt the player to play again
             play_again = input("Do you want to play again? (yes/no): ")
             if play_again.lower() == "yes":
