@@ -1,9 +1,13 @@
 import random
 
 #Prompt a username from the user
-username = input("Enter a username: ")
+username = input("Enter a username: ").capitalize()
 
 def hangman():
+    # opens file in read mode
+    with open("words.txt") as file:
+        # returns the entire file as a string and splits the string into a list of lines
+        words = file.read().splitlines()
     # List of words to choose from
     words = ['apple', 'banana', 'orange', 'grape', 'watermelon']
     # Select a random word from the list
@@ -21,6 +25,17 @@ def hangman():
     while attempts > 0:
         # Prompt the player to enter a letter guess
         guess = input("Enter a letter: ").lower()
+        
+        if len(guess) != 1:
+            print("Invalid input. Please enter a single letter.")
+            continue
+            
+        # Check if the guessed letter is not in the word
+        if guess not in word:
+            # Decrement the number of attempts
+            attempts -= 1
+            print("Wrong guess. You have", attempts, "attempts left.")
+            continue
 
         # Check if the letter has already been guessed
         if guess in guessed_letters:
@@ -29,12 +44,6 @@ def hangman():
 
         # Add the guessed letter to the list of guessed letters
         guessed_letters.append(guess)
-
-        # Check if the guessed letter is not in the word
-        if guess not in word:
-            # Decrement the number of attempts
-            attempts -= 1
-            print("Wrong guess. You have", attempts, "attempts left.")
 
         # Construct the revealed word with guessed letters and underscores
         revealed_word = ""
